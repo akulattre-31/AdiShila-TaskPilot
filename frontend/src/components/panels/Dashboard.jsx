@@ -51,93 +51,96 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto flex flex-col gap-12">
-      {/* Hero Banner */}
-        <section className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-transparent blur-2xl opacity-50 group-hover:opacity-75 transition duration-1000"></div>
-          <div className="relative glass-card rounded-xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 border-l-4 border-l-primary overflow-hidden">
-            <div className="z-10">
-              <span className="font-label-caps text-label-caps text-primary tracking-[0.2em] mb-4 block">SYSTEM STATUS: NOMINAL</span>
-              <h1 className="font-headline-xl text-headline-xl text-on-surface mb-4">Adishila Core Active</h1>
-              <p className="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
-                The core is processing high-yield market signals. Optimization protocols are ready for deployment in your current operational sector.
-              </p>
-              <div className="mt-8 flex gap-4">
-                <button className="clay-button px-8 py-3 rounded-full text-on-primary-container font-bold font-label-caps hover:scale-105 transition-all">
-                  VIEW ANALYTICS
-                </button>
-              </div>
-            </div>
-            <div className="relative w-full max-w-[320px] aspect-video rounded-lg overflow-hidden glass-card border border-white/20 shadow-2xl shrink-0">
-              <img alt="Core Data Visualization" className="w-full h-full object-cover object-center opacity-80 mix-blend-screen" src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=800&q=80"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+    <div className="w-full h-full flex flex-col gap-16 relative">
+      {/* Immersive HUD Hero Banner */}
+      <section className="relative w-full overflow-hidden rounded-3xl group">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-black/80 z-0"></div>
+        <img alt="Core Space Void" className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen scale-105 group-hover:scale-100 transition-transform duration-[3s]" src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=1600&q=80"/>
+        <div className="relative z-10 liquid-glass p-12 md:p-16 border-l-4 border-l-primary flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="max-w-2xl backdrop-blur-md bg-black/20 p-8 rounded-2xl shadow-clay-glow border border-white/5">
+            <span className="font-label-caps text-label-caps text-primary tracking-[0.3em] mb-4 block flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#ff5500]"></div>
+              SYSTEM STATUS: NOMINAL
+            </span>
+            <h1 className="font-headline-xl text-5xl text-white mb-6 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]">Adishila Core Active</h1>
+            <p className="font-body-lg text-lg text-on-surface-variant leading-relaxed">
+              The core is processing high-yield market signals. Optimization protocols are ready for deployment in your current operational sector. Awaiting operator input.
+            </p>
+            <div className="mt-8 flex gap-6">
+              <button className="clay-button px-10 py-4 rounded-full text-on-primary-container font-bold font-label-caps tracking-widest hover:scale-105 transition-all flex items-center gap-2">
+                <span className="material-symbols-outlined">query_stats</span>
+                VIEW ANALYTICS
+              </button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Predictables Section */}
-        <section>
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center gap-4">
-              <span className="material-symbols-outlined text-primary text-3xl">insights</span>
-              <h2 className="font-headline-lg text-headline-lg text-on-surface">Mission Catalogue</h2>
-            </div>
-            <div className="flex gap-2">
-              <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 font-label-caps text-[10px] text-on-surface-variant uppercase">
-                {loading ? 'Syncing...' : `${displayTasks.length} Tasks Pending`}
-              </span>
+      {/* Predictables Spatial Grid */}
+      <section className="relative z-10">
+        <div className="flex items-center justify-between mb-10 border-b border-primary/20 pb-4">
+          <div className="flex items-center gap-4">
+            <span className="material-symbols-outlined text-primary text-4xl drop-shadow-[0_0_10px_rgba(255,85,0,0.8)]">radar</span>
+            <h2 className="font-headline-lg text-3xl text-white tracking-wide">Mission Catalogue</h2>
+          </div>
+          <div className="flex gap-2">
+            <div className="px-4 py-2 rounded-full liquid-glass border border-primary/30 font-label-caps text-[11px] text-primary uppercase shadow-[0_0_15px_rgba(255,85,0,0.2)] flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
+              {loading ? 'Syncing...' : `${displayTasks.length} Signals Detected`}
             </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {displayTasks.map((t, idx) => (
-              <div key={t.id || idx} className="liquid-glass rounded-xl p-4 flex flex-col gap-3 hover:shadow-clay-glow hover:border-primary/50 transition-all duration-300 group relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="relative z-10 flex justify-between items-start">
-                  <div className="p-2 rounded-lg bg-primary-container/10 border border-primary/30 text-primary shadow-clay">
-                    <span className="material-symbols-outlined text-[16px]" style={{ fontVariationSettings: "'FILL' 1" }}>dataset</span>
-                  </div>
-                  <span className="font-label-caps text-[9px] px-2 py-1 rounded-md bg-white/5 text-on-surface-variant border border-white/10 uppercase shadow-inner">
-                    {t.grade || 'Priority'}
-                  </span>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
+          {displayTasks.map((t, idx) => (
+            <div key={t.id || idx} className="liquid-glass rounded-2xl p-6 flex flex-col gap-4 hover:shadow-[0_0_40px_rgba(255,85,0,0.15)] hover:border-primary/50 hover:-translate-y-1 transition-all duration-500 group relative overflow-hidden backdrop-blur-[40px]">
+              <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="relative z-10 flex justify-between items-start">
+                <div className="p-2.5 rounded-xl bg-primary/10 border border-primary/40 text-primary shadow-clay">
+                  <span className="material-symbols-outlined text-[20px]" style={{ fontVariationSettings: "'FILL' 1" }}>dataset</span>
                 </div>
-                <div className="relative z-10">
-                  <h3 className="font-headline-lg-mobile text-[15px] text-on-surface mb-1 group-hover:text-primary transition-colors">{t.title}</h3>
-                  {t.fitReason && (
-                    <div className="p-2 mt-2 bg-black/40 border border-primary/20 rounded-lg shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]">
-                      <p className="font-body-md text-[11px] text-primary/90 italic flex gap-1.5 items-start leading-snug">
-                        <span className="material-symbols-outlined text-[12px] mt-0.5">auto_awesome</span>
-                        {t.fitReason}
-                      </p>
-                    </div>
-                  )}
-                </div>
-                <div className="grid grid-cols-2 gap-2 py-2 border-y border-white/5 mt-auto">
-                  <div>
-                    <p className="font-label-caps text-[9px] text-on-surface-variant uppercase mb-0.5">Expected Yield</p>
-                    <p className="font-headline-lg-mobile text-[14px] text-primary">{t.gbp}</p>
-                  </div>
-                  <div>
-                    <p className="font-label-caps text-[9px] text-on-surface-variant uppercase mb-0.5">Est. Time</p>
-                    <p className="font-headline-lg-mobile text-[14px] text-on-surface">{t.timeHours}h</p>
-                  </div>
-                </div>
-                <button 
-                  className="clay-button w-full py-2.5 rounded-full text-on-primary-container font-bold font-label-caps text-[9px] tracking-widest flex items-center justify-center gap-1.5 hover:translate-y-[-1px]"
-                  onClick={() => {
-                    trackAction('SELECT_RECOMMENDED_TASK', { taskId: t.id, title: t.title });
-                    setSelectedTask(t);
-                  }}
-                >
-                  GENERATE EXECUTION BRIEF
-                  <span className="material-symbols-outlined text-sm">bolt</span>
-                </button>
+                <span className="font-label-caps text-[10px] px-3 py-1.5 rounded-full bg-black/40 text-primary border border-primary/20 uppercase shadow-inner tracking-widest">
+                  {t.grade || 'Priority'}
+                </span>
               </div>
-            ))}
-          </div>
-        </section>
+              <div className="relative z-10 mt-2">
+                <h3 className="font-headline-lg-mobile text-[18px] text-white mb-2 group-hover:text-primary transition-colors duration-300 leading-tight">{t.title}</h3>
+                {t.fitReason && (
+                  <div className="p-3 mt-3 bg-black/60 border border-primary/10 rounded-xl shadow-[inset_0_2px_15px_rgba(0,0,0,0.8)] backdrop-blur-md">
+                    <p className="font-body-md text-[12px] text-primary/80 italic flex gap-2 items-start leading-relaxed">
+                      <span className="material-symbols-outlined text-[14px] mt-0.5 text-primary">auto_awesome</span>
+                      {t.fitReason}
+                    </p>
+                  </div>
+                )}
+              </div>
+              <div className="grid grid-cols-2 gap-4 py-4 border-y border-white/10 mt-auto relative z-10 bg-black/20 rounded-xl px-4 my-2">
+                <div>
+                  <p className="font-label-caps text-[10px] text-on-surface-variant uppercase mb-1 tracking-widest">Expected Yield</p>
+                  <p className="font-headline-lg-mobile text-[16px] text-primary drop-shadow-[0_0_5px_rgba(255,85,0,0.5)]">{t.gbp}</p>
+                </div>
+                <div>
+                  <p className="font-label-caps text-[10px] text-on-surface-variant uppercase mb-1 tracking-widest">Est. Time</p>
+                  <p className="font-headline-lg-mobile text-[16px] text-white">{t.timeHours}h</p>
+                </div>
+              </div>
+              <button 
+                className="relative z-10 clay-button w-full py-3.5 rounded-xl text-black bg-primary font-bold font-label-caps text-[11px] tracking-[0.2em] flex items-center justify-center gap-2 hover:brightness-125 transition-all overflow-hidden"
+                onClick={() => {
+                  trackAction('SELECT_RECOMMENDED_TASK', { taskId: t.id, title: t.title });
+                  setSelectedTask(t);
+                }}
+              >
+                <div className="absolute inset-0 bg-white/20 opacity-0 hover:opacity-100 transition-opacity"></div>
+                EXECUTE PROTOCOL
+                <span className="material-symbols-outlined text-[16px]">bolt</span>
+              </button>
+            </div>
+          ))}
+        </div>
+      </section>
 
-      </div>
+    </div>
   );
 };
 
