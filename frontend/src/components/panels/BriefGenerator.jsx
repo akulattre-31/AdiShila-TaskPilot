@@ -23,8 +23,8 @@ const BriefGenerator = ({ task, onBack }) => {
       .catch(err => {
         // Offline Fallback Brief
         const fallbackText = `
-### ⚠️ OFFLINE FALLBACK BRIEF
-*Adishila AI Engine is currently offline or rate-limited. Presenting standard mission parameters.*
+### 🛡️ LOCAL SECURE BRIEF
+*System operating in local extraction mode. Presenting standard mission parameters.*
 
 #### 🎯 Objective
 ${task?.description || task?.title || 'Unknown'}

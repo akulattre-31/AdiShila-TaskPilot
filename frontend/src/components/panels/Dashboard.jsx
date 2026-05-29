@@ -5,6 +5,7 @@ import { rankLocally } from '../../lib/scorer';
 import { tasks as ALL_TASKS } from '../../lib/taskDatabase';
 import BriefGenerator from './BriefGenerator';
 import { useTracker } from '../../hooks/useTracker';
+import { Cpu, Globe, Activity, Code, Database, Zap } from 'lucide-react';
 
 const Dashboard = () => {
   const { apiCall } = useApi();
@@ -56,6 +57,17 @@ const Dashboard = () => {
       <section className="relative w-full overflow-hidden rounded-3xl group">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-transparent to-black/80 z-0"></div>
         <img alt="Core Space Void" className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen scale-105 group-hover:scale-100 transition-transform duration-[3s]" src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=1600&q=80"/>
+        
+        {/* Neon Doodles */}
+        <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden">
+          <Cpu className="absolute top-[10%] left-[15%] text-primary/40 animate-[spin_10s_linear_infinite] drop-shadow-[0_0_10px_rgba(255,85,0,0.8)]" size={48} />
+          <Globe className="absolute bottom-[20%] right-[10%] text-primary/30 animate-pulse drop-shadow-[0_0_15px_rgba(255,85,0,0.5)]" size={64} />
+          <Activity className="absolute top-[30%] right-[25%] text-primary/50 animate-bounce drop-shadow-[0_0_8px_rgba(255,85,0,0.9)]" size={32} />
+          <Code className="absolute bottom-[15%] left-[20%] text-primary/20 animate-pulse drop-shadow-[0_0_12px_rgba(255,85,0,0.4)]" size={56} />
+          <Database className="absolute top-[50%] left-[5%] text-primary/30 animate-[spin_15s_linear_infinite_reverse] drop-shadow-[0_0_10px_rgba(255,85,0,0.6)]" size={40} />
+          <Zap className="absolute top-[15%] right-[5%] text-primary/60 animate-pulse drop-shadow-[0_0_20px_rgba(255,85,0,1)]" size={36} />
+        </div>
+
         <div className="relative z-10 liquid-glass p-12 md:p-16 border-l-4 border-l-primary flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="max-w-2xl backdrop-blur-md bg-black/20 p-8 rounded-2xl shadow-clay-glow border border-white/5">
             <span className="font-label-caps text-label-caps text-primary tracking-[0.3em] mb-4 block flex items-center gap-2">

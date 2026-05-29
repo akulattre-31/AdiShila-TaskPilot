@@ -1,9 +1,15 @@
 import React from 'react';
-import { LayoutDashboard, Compass, Settings, User } from 'lucide-react';
+import { LayoutDashboard, Compass, Settings, User, LogOut } from 'lucide-react';
 import { useSession } from '../../hooks/useSession';
+import { storage } from '../../lib/storage';
 
 const FloatingDock = ({ currentView, setView }) => {
   const { session } = useSession();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.reload();
+  };
 
   const navItems = [
     { id: 'dashboard', name: 'Dashboard', icon: LayoutDashboard },
@@ -50,6 +56,9 @@ const FloatingDock = ({ currentView, setView }) => {
           </div>
           <button className="text-on-surface-variant hover:text-primary transition-colors">
             <Settings size={20} />
+          </button>
+          <button onClick={handleLogout} className="text-on-surface-variant hover:text-error transition-colors ml-2" title="Logout">
+            <LogOut size={20} />
           </button>
         </div>
       </div>

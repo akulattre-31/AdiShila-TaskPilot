@@ -37,7 +37,7 @@ const TaskExplorer = () => {
   return (
     <div className="w-full h-full flex flex-col relative z-10 gap-8">
       {/* Header section with sticky glass effect */}
-      <div className="sticky top-28 z-40 backdrop-blur-[40px] bg-black/40 border-b border-primary/20 pb-6 rounded-3xl p-8 shadow-clay-glow">
+      <div className="relative z-40 backdrop-blur-[40px] bg-black/40 border-b border-primary/20 pb-6 rounded-3xl p-8 shadow-clay-glow">
         <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between mb-8">
           <div className="flex items-center gap-4">
             <span className="material-symbols-outlined text-primary text-4xl drop-shadow-[0_0_10px_rgba(255,85,0,0.8)]">explore</span>
