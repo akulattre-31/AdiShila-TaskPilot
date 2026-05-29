@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&display=swap');
+@import './variables.css';
+@import './animations.css';
+@import './components.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--void);
+  position: relative;
+  color: var(--text-warm);
+  font-family: 'Crimson Pro', Georgia, serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layered radial ember atmosphere */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: -2;
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 0%,
+      rgba(255,80,10,0.16) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 40% at 85% 100%,
+      rgba(180,60,0,0.10) 0%, transparent 50%),
+    radial-gradient(ellipse 30% 30% at 50% 50%,
+      rgba(255,100,20,0.03) 0%, transparent 60%);
+}
+
+/* Film grain overlay — analogue texture */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: -1;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+h1, h2, h3, h4, h5, h6, .nav-label, .gbp-value, .metric-number, .badge {
+  font-family: 'Cinzel', serif;
+  font-weight: 600;
+  color: var(--text-hot);
+}
+
+.gbp-value, .metric-number {
+  font-weight: 700;
+  color: var(--ember-pale);
+}
+
+.dim-text {
+  font-weight: 300;
+  color: var(--text-dim);
+}
+
+.emphasis-text {
+  font-weight: 600;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-hot);
+  border-radius: 2px;
+}

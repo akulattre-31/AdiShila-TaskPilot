@@ -1,0 +1,32 @@
+@import url('./styles/stitch.css');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { 
+    background-color: #050505;
+    background-image: radial-gradient(rgba(75, 0, 130, 0.1) 0%, transparent 60%), radial-gradient(rgba(255, 77, 0, 0.05) 0%, transparent 60%);
+    background-size: 100vw 100vh, 100vw 100vh;
+    background-position: top left, bottom right;
+    background-attachment: fixed;
+    color: #e5e2e1; 
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Sora', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-panel { background: rgba(10, 10, 10, 0.4); backdrop-filter: blur(40px); border: 1px solid rgba(255, 85, 0, 0.15); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
+  .liquid-glass { background: linear-gradient(135deg, rgba(255, 85, 0, 0.1), rgba(255, 255, 255, 0)); backdrop-filter: blur(30px); border-top: 1px solid rgba(255, 85, 0, 0.3); border-left: 1px solid rgba(255, 85, 0, 0.3); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); }
+  .border-subtle { border: 1px solid rgba(255, 255, 255, 0.05); }
+  .text-orange-primary { color: #FF4D00; }
+  .bg-orange-primary { background-color: #FF4D00; }
+  .border-orange-primary { border-color: #FF4D00; }
+  .hover-orange-glow:hover { box-shadow: 0 0 15px rgba(255, 77, 0, 0.2); border-color: #FF4D00; }
+}

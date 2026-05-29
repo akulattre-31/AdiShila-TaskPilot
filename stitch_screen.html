@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Business Lab | TaskPilot Dashboard</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;family=Outfit:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-primary": "#aa3600",
+                    "on-primary-container": "#511500",
+                    "tertiary": "#c4c6ce",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed-variant": "#43474d",
+                    "surface-container-high": "#372620",
+                    "on-secondary": "#2d3136",
+                    "on-surface-variant": "#c4c6ca",
+                    "background": "#1e100b",
+                    "secondary-fixed": "#e0e2ea",
+                    "surface-container-low": "#281812",
+                    "surface-container": "#18191b",
+                    "primary-container": "#ff5708",
+                    "on-tertiary": "#2d3136",
+                    "surface-dim": "#1e100b",
+                    "outline-variant": "#5c4037",
+                    "inverse-on-surface": "#3e2c26",
+                    "on-tertiary-container": "#262a30",
+                    "on-secondary-fixed-variant": "#43474d",
+                    "primary-fixed": "#ffdbcf",
+                    "on-secondary-container": "#b2b5bc",
+                    "secondary-container": "#43474d",
+                    "on-tertiary-fixed": "#181c21",
+                    "on-primary-fixed": "#390c00",
+                    "secondary": "#c4c6ce",
+                    "tertiary-fixed-dim": "#c4c6ce",
+                    "secondary-fixed-dim": "#c4c6ce",
+                    "on-surface": "#e2e2e4",
+                    "surface": "#111213",
+                    "on-secondary-fixed": "#181c21",
+                    "on-primary": "#5c1900",
+                    "on-background": "#fbdcd3",
+                    "surface-container-highest": "#43302a",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#190b06",
+                    "surface-tint": "#ffb59c",
+                    "surface-bright": "#48352e",
+                    "tertiary-fixed": "#e0e2ea",
+                    "primary": "#ffb59c",
+                    "outline": "#ac897e",
+                    "tertiary-container": "#8e9198",
+                    "inverse-surface": "#fbdcd3",
+                    "primary-fixed-dim": "#ffb59c",
+                    "surface-variant": "#43302a",
+                    "on-primary-fixed-variant": "#822700",
+                    "error-container": "#93000a",
+                    "on-error-container": "#ffdad6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "2rem",
+                    "container-padding-mobile": "1.5rem",
+                    "container-padding-desktop": "3rem",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Outfit"],
+                    "headline-xl": ["Outfit"],
+                    "body-lg": ["Inter"],
+                    "label-caps": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Outfit"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #111213;
+            color: #e2e2e4;
+            overflow-x: hidden;
+        }
+
+        .clay-button {
+            background: #ff5708;
+            box-shadow: 
+                inset 4px 4px 8px rgba(255, 255, 255, 0.4),
+                inset -4px -4px 8px rgba(0, 0, 0, 0.4),
+                0 10px 20px rgba(255, 87, 8, 0.2);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .clay-button:active {
+            transform: scale(0.96);
+            box-shadow: 
+                inset 2px 2px 4px rgba(255, 255, 255, 0.2),
+                inset -2px -2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(24, 25, 27, 0.3);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        }
+
+        .neon-glow {
+            filter: drop-shadow(0 0 15px rgba(255, 87, 8, 0.3));
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 87, 8, 0.1);
+            border-radius: 10px;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col p-6 gap-8 bg-surface-container-low/40 backdrop-blur-[25px] border-r border-white/10 w-72 rounded-r-xl shadow-[10px_0_30px_rgba(0,0,0,0.5)]">
+<div class="flex flex-col gap-1 mb-4">
+<div class="w-12 h-12 flex items-center justify-center rounded-lg bg-primary-container/20 border border-primary/30 mb-2">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">hexagon</span>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Hey, 9010</h2>
+<p class="font-label-caps text-label-caps text-on-surface-variant/60">Business Lab</p>
+</div>
+<nav class="flex-1 flex flex-col gap-4">
+<a class="bg-primary text-on-primary-container shadow-[inset_2px_2px_4px_rgba(255,255,255,0.3),inset_-2px_-2px_4px_rgba(0,0,0,0.4)] rounded-DEFAULT p-3 flex items-center gap-3 transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">Dashboard</span>
+</a>
+<a class="text-on-surface-variant flex items-center gap-3 p-3 hover:bg-white/5 rounded-DEFAULT transition-all duration-200 hover:translate-x-1" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-label-caps text-label-caps uppercase tracking-wider">Task Explorer</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-4">
+<div class="flex flex-col gap-2 border-t border-white/5 pt-6">
+<a class="text-on-surface-variant/70 flex items-center gap-3 p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+<span class="font-label-caps text-label-caps">Help</span>
+</a>
+<a class="text-on-surface-variant/70 flex items-center gap-3 p-2 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</div>
+<button class="clay-button w-full py-4 rounded-xl text-on-primary-container font-bold font-label-caps flex items-center justify-center gap-2 hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined">logout</span>
+                Sign Out
+            </button>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-surface-container/30 backdrop-blur-[25px] border-b border-white/20 bg-clip-padding shadow-[0_0_32px_rgba(255,85,0,0.05)] ml-72 max-w-[calc(100%-18rem)]">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-2xl neon-glow">hexagon</span>
+<span class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary uppercase tracking-tighter">Business Lab</span>
+</div>
+<div class="h-6 w-[1px] bg-white/10 hidden md:block"></div>
+<div class="hidden md:flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+<span class="material-symbols-outlined text-on-surface-variant text-sm">timer</span>
+<span class="font-label-caps text-label-caps text-primary">Session: 45:00</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/50">search</span>
+<input class="bg-white/5 border border-white/10 rounded-full py-2 pl-10 pr-4 focus:ring-1 focus:ring-primary focus:border-primary w-64 transition-all duration-300 font-body-md text-sm outline-none" placeholder="Search parameters..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<div class="w-10 h-10 rounded-full border-2 border-primary/30 p-0.5">
+<img alt="User avatar for 9010" class="w-full h-full rounded-full object-cover" data-alt="A professional high-contrast headshot of a futuristic business executive with subtle cybernetic enhancements on the temple. The lighting is dramatic cinematic neon orange and cool blue, with a deep black background that matches the dark cyberpunk UI aesthetic. The mood is high-stakes and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0nma5FxtFtHvsShKdmkk03ifdZrbf-Hs08kofnylWogMz-J7POa2LysN5pJNZSM34vIdJVZNZeZLFeERhg7ve3sFgbZn5fzFWHyQdbGXv_O8tlyRGxBwfAl6xRxcaSTVau_AmDXeFwiGuboOKZhiCXd9-u_Sq6RpV54LQB3bObjiCULETG0i-Y-ks6Ko7n_n8GXuTcmjHfIx9uZ6Luom7FzMJY2Nt0ETIh0kZNiFAxIVW3iGsaUR6uXjEI72kT-nOUGoj_52FWMo"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-72 pt-28 px-gutter pb-12 min-h-screen">
+<div class="max-w-7xl mx-auto flex flex-col gap-12">
+<!-- Hero Banner -->
+<section class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary/20 to-transparent blur-2xl opacity-50 group-hover:opacity-75 transition duration-1000"></div>
+<div class="relative glass-card rounded-xl p-10 flex flex-col md:flex-row items-center justify-between gap-8 border-l-4 border-l-primary overflow-hidden">
+<div class="z-10">
+<span class="font-label-caps text-label-caps text-primary tracking-[0.2em] mb-4 block">SYSTEM STATUS: NOMINAL</span>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-4">Adishila Core Active</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                            The core is processing high-yield market signals. Optimization protocols are ready for deployment in your current operational sector.
+                        </p>
+<div class="mt-8 flex gap-4">
+<button class="clay-button px-8 py-3 rounded-full text-on-primary-container font-bold font-label-caps hover:scale-105 transition-all">
+                                VIEW ANALYTICS
+                            </button>
+</div>
+</div>
+<div class="relative w-full max-w-sm aspect-square md:aspect-auto md:h-64 rounded-lg overflow-hidden glass-card border border-white/20 shadow-2xl">
+<img alt="Core Data Visualization" class="w-full h-full object-cover opacity-80 mix-blend-screen" data-alt="A mesmerizing 3D abstract visualization of complex data structures and neural networks glowing in intense neon orange and deep amber against a pitch-black void. Spherical clusters of data points are connected by thin threads of light, representing flow and optimization in a futuristic cyberpunk computer system." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCZLQBNHlzAL6qbwaWCaZYxxL3FuLexZ7O7NVki8sACRON7UzsC_ka0jVwH24VNoJAxXzpLGbnU54Mbm6nvTkTzpSwjAniMxrVF_Ts3MTM04F6Tl06SkkAR9NPSi2ImyoJUn17NB8Znsq1wWk1FB-HjFg2tAT7Q65MBbmJQXbSjRXl2cVHmDEg86QaVoNNcETdrMQeM3Umgn6YRzBa35DpIA4YBGemdDHUjJK7BToSdfC2mLfJswdNUhoXpp5X7OKVN-XDUOkuSts"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+</div>
+</section>
+<!-- Predictables Section -->
+<section>
+<div class="flex items-center justify-between mb-8">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl">insights</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Predictables</h2>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 font-label-caps text-[10px] text-on-surface-variant uppercase">3 Tasks Pending</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-6 shadow-[0_10px_32px_rgba(255,85,0,0.08)] hover:shadow-[0_15px_40px_rgba(255,85,0,0.15)] transition-all duration-300 group">
+<div class="flex justify-between items-start">
+<div class="p-3 rounded-lg bg-primary-container/10 border border-primary/20 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dataset</span>
+</div>
+<span class="font-label-caps text-[10px] px-2 py-1 rounded-md bg-green-500/10 text-green-400 border border-green-500/20 uppercase">High Yield</span>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 group-hover:text-primary transition-colors">Data Pipeline Optimization</h3>
+<p class="font-body-md text-sm text-on-surface-variant/80">Refine the ingress flows for real-time market sentiment analysis clusters.</p>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-white/5">
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-1">Expected Yield</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-primary">£4,200</p>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-1">Est. Time</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">2h 30m</p>
+</div>
+</div>
+<button class="clay-button w-full py-4 rounded-full text-on-primary-container font-bold font-label-caps text-[11px] tracking-widest flex items-center justify-center gap-2 hover:translate-y-[-2px]">
+                            GENERATE EXECUTION BRIEF
+                            <span class="material-symbols-outlined text-sm">bolt</span>
+</button>
+</div>
+<!-- Card 2 -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-6 shadow-[0_10px_32px_rgba(255,85,0,0.08)] hover:shadow-[0_15px_40px_rgba(255,85,0,0.15)] transition-all duration-300 group">
+<div class="flex justify-between items-start">
+<div class="p-3 rounded-lg bg-primary-container/10 border border-primary/20 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<span class="font-label-caps text-[10px] px-2 py-1 rounded-md bg-primary/20 text-primary border border-primary/30 uppercase">Priority Alpha</span>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 group-hover:text-primary transition-colors">Operational Efficiency Audit</h3>
+<p class="font-body-md text-sm text-on-surface-variant/80">Deep dive into current overhead structures to identify waste sectors.</p>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-white/5">
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-1">Expected Yield</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-primary">£12,500</p>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-1">Est. Time</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">5h 15m</p>
+</div>
+</div>
+<button class="clay-button w-full py-4 rounded-full text-on-primary-container font-bold font-label-caps text-[11px] tracking-widest flex items-center justify-center gap-2 hover:translate-y-[-2px]">
+                            GENERATE EXECUTION BRIEF
+                            <span class="material-symbols-outlined text-sm">bolt</span>
+</button>
+</div>
+<!-- Card 3 -->
+<div class="glass-card rounded-xl p-6 flex flex-col gap-6 shadow-[0_10px_32_rgba(255,85,0,0.08)] hover:shadow-[0_15px_40px_rgba(255,85,0,0.15)] transition-all duration-300 group">
+<div class="flex justify-between items-start">
+<div class="p-3 rounded-lg bg-primary-container/10 border border-primary/20 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">public</span>
+</div>
+<span class="font-label-caps text-[10px] px-2 py-1 rounded-md bg-white/5 text-on-surface-variant border border-white/10 uppercase">Global Scope</span>
+</div>
+<div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2 group-hover:text-primary transition-colors">Market Intelligence Sweep</h3>
+<p class="font-body-md text-sm text-on-surface-variant/80">Autonomous scraping of competitive price points in the EMEA sector.</p>
+</div>
+<div class="grid grid-cols-2 gap-4 py-4 border-y border-white/5">
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-1">Expected Yield</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-primary">£2,800</p>
+</div>
+<div>
+<p class="font-label-caps text-[10px] text-on-surface-variant uppercase mb-1">Est. Time</p>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface">1h 45m</p>
+</div>
+</div>
+<button class="clay-button w-full py-4 rounded-full text-on-primary-container font-bold font-label-caps text-[11px] tracking-widest flex items-center justify-center gap-2 hover:translate-y-[-2px]">
+                            GENERATE EXECUTION BRIEF
+                            <span class="material-symbols-outlined text-sm">bolt</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Secondary Analytics Overview (Bento Grid Style) -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 glass-card rounded-xl p-8 flex flex-col gap-6 h-[400px]">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-lg text-on-surface">Weekly Efficiency Delta</h3>
+<div class="flex gap-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Current</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-white/20"></span>
+<span class="font-label-caps text-[10px] text-on-surface-variant uppercase">Projected</span>
+</div>
+</div>
+</div>
+<div class="flex-1 w-full bg-white/5 rounded-lg relative overflow-hidden flex items-end justify-between p-4 gap-2">
+<!-- Simplified Chart Visual -->
+<div class="w-full h-[60%] bg-primary/20 rounded-t-md relative group">
+<div class="absolute inset-x-0 bottom-0 h-1/2 bg-primary group-hover:h-[70%] transition-all duration-500"></div>
+</div>
+<div class="w-full h-[80%] bg-primary/20 rounded-t-md relative group">
+<div class="absolute inset-x-0 bottom-0 h-[40%] bg-primary group-hover:h-[60%] transition-all duration-500"></div>
+</div>
+<div class="w-full h-[40%] bg-primary/20 rounded-t-md relative group">
+<div class="absolute inset-x-0 bottom-0 h-[70%] bg-primary group-hover:h-[90%] transition-all duration-500"></div>
+</div>
+<div class="w-full h-[90%] bg-primary/20 rounded-t-md relative group">
+<div class="absolute inset-x-0 bottom-0 h-[30%] bg-primary group-hover:h-[50%] transition-all duration-500"></div>
+</div>
+<div class="w-full h-[55%] bg-primary/20 rounded-t-md relative group">
+<div class="absolute inset-x-0 bottom-0 h-[60%] bg-primary group-hover:h-[80%] transition-all duration-500"></div>
+</div>
+<div class="w-full h-[75%] bg-primary/20 rounded-t-md relative group">
+<div class="absolute inset-x-0 bottom-0 h-[50%] bg-primary group-hover:h-[70%] transition-all duration-500"></div>
+</div>
+<div class="w-full h-[30%] bg-primary/20 rounded-t-md relative group">
+<div class="absolute inset-x-0 bottom-0 h-[80%] bg-primary group-hover:h-[95%] transition-all duration-500"></div>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-xl p-8 flex flex-col gap-6 items-center justify-center text-center">
+<div class="w-32 h-32 rounded-full border-4 border-dashed border-primary/40 flex items-center justify-center relative">
+<div class="absolute inset-0 rounded-full border-4 border-primary border-t-transparent animate-spin duration-[3s]"></div>
+<div class="flex flex-col items-center">
+<span class="font-headline-lg text-primary">84%</span>
+<span class="font-label-caps text-[8px] text-on-surface-variant uppercase">Core Integrity</span>
+</div>
+</div>
+<div>
+<h4 class="font-headline-lg-mobile text-on-surface mb-2">Neural Link Active</h4>
+<p class="font-body-md text-sm text-on-surface-variant">Syncing with Business Lab nodes for upcoming predicted opportunities.</p>
+</div>
+<button class="w-full py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-on-surface font-label-caps text-[10px] tracking-widest transition-all">
+                        MANAGE NODE CONNECTIONS
+                    </button>
+</div>
+</section>
+</div>
+</main>
+<script>
+        // Micro-interactions for glass elements
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+                
+                // Add a very subtle "shine" effect via background
+                const shine = `radial-gradient(400px circle at ${x}px ${y}px, rgba(255,85,0,0.05), transparent 40%)`;
+                card.style.backgroundImage = shine;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.backgroundImage = '';
+            });
+        });
+
+        // Simple Session Timer Animation (Simulation)
+        let timerDisplay = document.querySelector('.text-primary.font-label-caps');
+        let totalSeconds = 45 * 60;
+        
+        setInterval(() => {
+            totalSeconds--;
+            let mins = Math.floor(totalSeconds / 60);
+            let secs = totalSeconds % 60;
+            if (timerDisplay) {
+                timerDisplay.textContent = `Session: ${mins}:${secs.toString().padStart(2, '0')}`;
+            }
+        }, 1000);
+    </script>
+</body></html>
